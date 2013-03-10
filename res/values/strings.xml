@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AndroidProjetActivity!</string>
+    <string name="app_name">AndroidProjet</string>
+    
+    <!-- General -->
+    <string name="save">Valider</string>
+    
+    
+	<!-- Login -->
+    <string name="login_user">Nom utilisateur</string>
+    <string name="login_password">Mot de passe</string>
+    <string name="take_photo">Prendre une photo</string>
+    <string name="take_schema">Faire un dessin</string>
+    
+</resources>
