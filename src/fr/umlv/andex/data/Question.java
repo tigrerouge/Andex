@@ -8,23 +8,44 @@ public class Question {
 	private String title;
 	private String text;
 	private long time;
+	private long idQuiz;
 	
+	public long getIdQuiz() {
+		return idQuiz;
+	}
+	public void setIdQuiz(long idQuiz) {
+		this.idQuiz = idQuiz;
+	}
+	private long idQuestion;
+	private boolean readOnly;
+	
+	private byte[] image;
+	
+	private List<Answer> answers = new ArrayList<Answer>();
+	
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
+	}
+	public long getIdQuestion() {
+		return idQuestion;
+	}
+	public void setIdQuestion(long idQuestion) {
+		this.idQuestion = idQuestion;
+	}
 	public long getTime() {
 		return time;
 	}
 	public void setTime(long time) {
 		this.time = time;
-	}
-
-	private byte[] image;
-	
-	private TypeQuestion[] typeAnswer;
-	
-	public TypeQuestion[] getTypeAnswer() {
-		return typeAnswer;
-	}
-	public void setTypeAnswer(TypeQuestion[] typeAnswer) {
-		this.typeAnswer = typeAnswer;
 	}
 	
 	public String getTitle() {
@@ -33,7 +54,6 @@ public class Question {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
 
 	public String getText() {
 		return text;
@@ -46,24 +66,5 @@ public class Question {
 	}
 	public void setImage(byte[] image) {
 		this.image = image;
-	}
-	public byte[] getImageAnswer() {
-		return imageAnswer;
-	}
-	public void setImageAnswer(byte[] imageAnswer) {
-		this.imageAnswer = imageAnswer;
-	}
-
-	private byte[] imageAnswer;
-	
-	private List<Option> options = new ArrayList<Option>();
-
-	public List<Option> getOptions() {
-		return options;
-	}
-	
-	public void setOptions(List<Option> options) {
-		this.options = options;
-	}
-	
+	}	
 }

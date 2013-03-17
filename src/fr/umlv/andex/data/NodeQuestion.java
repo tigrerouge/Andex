@@ -6,6 +6,13 @@ import java.util.List;
 public class NodeQuestion {
 
 	private String title;
+	private long time;
+	public long getTime() {
+		return time;
+	}
+	public void setTime(long time) {
+		this.time = time;
+	}
 	private int id;
 	
 	public int getId() {
@@ -40,5 +47,4 @@ public class NodeQuestion {
 	public boolean isLeaf(){
 		return nodes.size()==0;
 	}
-	
 }

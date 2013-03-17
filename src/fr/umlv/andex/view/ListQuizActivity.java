@@ -3,6 +3,8 @@ package fr.umlv.andex.view;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,11 +19,15 @@ import fr.umlv.andex.data.QuizDescription;
 public class ListQuizActivity extends Activity implements OnItemClickListener{
 
 	private QuizDescription[] table;
+	private long idQuizSelected;
+	private long idUser;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listquiz);
+  
+        idUser = (Long)getIntent().getExtras().get("userId");
         
         ListView listView = (ListView) findViewById(R.id.listquiz);
         QuizController quizController = new QuizController();
@@ -30,7 +36,7 @@ public class ListQuizActivity extends Activity implements OnItemClickListener{
         table = (QuizDescription[]) listQuiz.toArray(new QuizDescription[listQuiz.size()]); 
         
         ArrayAdapter<QuizDescription> adapter = new ArrayAdapter<QuizDescription>(this,
-          android.R.layout.simple_list_item_1, android.R.id.text1, table);
+          R.layout.list_custom_item, R.id.list_item, table);
 
         listView.setAdapter(adapter); 
         listView.setOnItemClickListener(this);
@@ -40,12 +46,48 @@ public class ListQuizActivity extends Activity implements OnItemClickListener{
 	public void onItemClick(AdapterView<?> arg0, View v, int position, long id) {
 		
     	try{
-    		Intent preIntent = new Intent(v.getContext(),
-    				TreeActivity.class);
-    		startActivity(preIntent);
+    		
+    		QuizDescription quizDescription = table[position];
+    		idQuizSelected = quizDescription.getIdQuiz();
+    		
+    		if(quizDescription.isInProgress()){
+    			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    			builder.setMessage(R.string.text_confirm)
+    			       .setCancelable(false)
+    			       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+    			           public void onClick(DialogInterface dialog, int id) {
+    			        	   
+    			        	   ListQuizActivity.this.takeExam();
+    			        	   ListQuizActivity.this.finish();
+    			           }
+    			       })
+    			       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+    			           public void onClick(DialogInterface dialog, int id) {
+    			                dialog.cancel();
+    			           }
+    			       });
+    			AlertDialog alert = builder.create();
+    			alert.show();
+    		}else{
+    			takeExam();
+    		}
+    		
     	}catch(Exception e){
     		e.printStackTrace();
-    	}
-		 	
+    	} 	
+	}
+	
+	private void takeExam(){
+		
+	    QuizController quizController = new QuizController();
+ 	    if(!quizController.examExist(this, idQuizSelected, idUser)){
+ 	    	quizController.saveExam(this, idQuizSelected, idUser);
+ 	    }
+		
+		Intent preIntent = new Intent(this,
+				TreeActivity.class);
+		preIntent.putExtra("idQuiz", idQuizSelected);
+		preIntent.putExtra("userId", idUser);
+		startActivity(preIntent);
 	}
 }

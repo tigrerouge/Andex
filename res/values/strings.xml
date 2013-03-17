@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, AndroidProjetActivity!</string>
-    <string name="app_name">AndroidProjet</string>
+    <string name="app_name">Andex</string>
     
     <!-- General -->
     <string name="save">Valider</string>
-    
+    <string name="next">Suivant</string>
+    <string name="previous">Précédent</string>
+    <string name="umlv">Université Paris-Est Marne-la-Vallée</string>
+    <string name="yes">Oui</string>
+    <string name="no">No</string>
     
 	<!-- Login -->
     <string name="login_user">Nom utilisateur</string>
     <string name="login_password">Mot de passe</string>
+    
+    
+    <!-- Question -->
     <string name="take_photo">Prendre une photo</string>
     <string name="take_schema">Faire un dessin</string>
+    <string name="title_question">Question</string>
+    <string name="subtitle_question">Response</string>
+    
+    <!-- Quiz -->
+    <string name="list_quiz">Examens</string>
+    <string name="quiz_status">État:</string>
+    <string name="title_quiz">Examen</string>
+    <string name="subtitle_questions">Questions</string>
+    
+    <!-- List Quiz -->
+    <string name="text_confirm">C\'est éxamen est en cours. Vous voulez le prendre?</string>
+    <string name="text_time">Ce question a du temps. Vous avez:</string>
     
 </resources>

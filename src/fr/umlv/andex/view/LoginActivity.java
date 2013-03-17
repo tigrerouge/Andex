@@ -41,6 +41,7 @@ public class LoginActivity extends Activity {
     	try{
     		Intent preIntent = new Intent(v.getContext(),
     				ListQuizActivity.class);
+    		preIntent.putExtra("userId", user.getUserId());
     		startActivity(preIntent);
     	}catch(Exception e){
     		e.printStackTrace();

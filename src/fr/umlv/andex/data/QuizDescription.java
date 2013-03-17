@@ -4,7 +4,14 @@ public class QuizDescription {
 
 	private String titleQuiz;
 	private long idQuiz;
+	private boolean inProgress;
 	
+	public boolean isInProgress() {
+		return inProgress;
+	}
+	public void setInProgress(boolean inProgress) {
+		this.inProgress = inProgress;
+	}
 	public String getTitleQuiz() {
 		return titleQuiz;
 	}
