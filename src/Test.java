@@ -1,5 +1,3 @@
-package fr.umlv.andex.controller;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,31 +16,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import fr.umlv.andex.util.Property;
-import android.os.AsyncTask;
 
-public class LoginTask extends AsyncTask<String, Void, String>{
+public class Test {
 
-	@Override
-	protected String doInBackground(String... params) {
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		try {
 
 			HttpClient httpclient = new DefaultHttpClient();
 
-			HttpPost httpPost = new HttpPost("http://"+Property.SERVER_ADRESS+":"+Property.SERVER_PORT+"/connect");
+			HttpPost httpPost = new HttpPost("http://127.0.0.1:12345/connect");
 
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-			nameValuePairs.add(new BasicNameValuePair("username",params[0]));
-			nameValuePairs.add(new BasicNameValuePair("password",params[1]));
+			nameValuePairs.add(new BasicNameValuePair("username","foo1"));
+			nameValuePairs.add(new BasicNameValuePair("password","xyz"));
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs)); 
-			
+
 			httpPost.getRequestLine();
-			
-			
 
 
 			HttpResponse response = httpclient.execute(httpPost);
 			HttpEntity resEntity = response.getEntity();
+
 
 			if (resEntity != null) {
 				String responseBody = EntityUtils.toString(resEntity);
@@ -58,15 +55,10 @@ public class LoginTask extends AsyncTask<String, Void, String>{
 					System.out.println();
 					
 					
-					HttpGet httpGet = new HttpGet("http://"+Property.SERVER_ADRESS+":"+Property.SERVER_PORT+"/exam");
+					HttpGet httpGet = new HttpGet("http://127.0.0.1:12345/exam?token="+jobj.getString("token")+"&exam="+exams.getString(0));
 					
-					
-					List<NameValuePair> nameValuePairs1 = new ArrayList<NameValuePair>();
-					nameValuePairs1.add(new BasicNameValuePair("token",jobj.optString("token")));
-					nameValuePairs1.add(new BasicNameValuePair("exam","mathexam1"));
-					httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs1)); 
-					
-					httpPost.getRequestLine();
+				
+					httpGet.getRequestLine();
 					
 					 response = httpclient.execute(httpGet);
 					 resEntity = response.getEntity();
@@ -81,18 +73,12 @@ public class LoginTask extends AsyncTask<String, Void, String>{
 					e.printStackTrace();
 				}
 			}
-			
-			
-			
-			
 
-
-			
-			
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+
 	}
 
 }

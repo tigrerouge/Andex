@@ -126,7 +126,6 @@ class AndexServerHandlerFactory(RESTHandlerFactory):
 		e = (self.directory,) + e
 		return os.path.join(*e)
 	def POST_connect(self, username, password):
-		print >> sys.stdout, "TTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSTTTTTTTT"
 		if not password: raise HttpException(403, "Blank password.")
 		from uuid import uuid4
 		exams = []

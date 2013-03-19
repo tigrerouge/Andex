@@ -8,7 +8,7 @@ public class LoginController {
 	public User findUserByUserAndPassword(String user, String password){
 	
 
-		//new LoginTask().execute(user,password);
+		new LoginTask().execute(user,password);
 		
 
 
